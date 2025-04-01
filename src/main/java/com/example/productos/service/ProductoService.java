@@ -15,6 +15,9 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class ProductoService {
 
+    public ProductoService(com.example.productos.repository.ProductoRepository productoRepository) {
+        this.productoRepository = productoRepository;
+    }
 private final ProductoRepository productoRepository;
 public Flux<Producto> listarProductos() {
 return productoRepository.findAll();

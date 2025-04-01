@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import java.util.Locale;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 @RestController
 @RequestMapping("/api/productos")
@@ -20,7 +22,12 @@ import java.util.Locale;
 
 public class ProductoController {
     private final ProductoService productoService;
-private final MessageSource messageSource;
+    private final MessageSource messageSource;
+    public ProductoController(ProductoService productoService, MessageSource messageSource) {
+        this.productoService = productoService;
+        this.messageSource = messageSource;
+    }
+
 @GetMapping
 public Flux<Producto> listarproductos() {
 return productoService.listarProductos();
