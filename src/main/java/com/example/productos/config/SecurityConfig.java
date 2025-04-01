@@ -16,12 +16,12 @@ public class SecurityConfig {
     @Bean
 public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
 http
-.authorizeExchange(exchanges -> exchanges
+.authorizeExchange(exchange -> exchange
 .pathMatchers("/api/**").authenticated()
 .anyExchange().permitAll()
 )
-.httpBasic(Customizer.withDefaults())
-.formLogin(Customizer.withDefaults());
+.httpBasic(Customizer.withDefaults()) // Activa autenticación básica
+.formLogin().disable(); // Desactiva login por formulario
 return http.build();
 }
 @Bean
@@ -33,5 +33,4 @@ UserDetails user = User.withDefaultPasswordEncoder()
 .build();
 return new MapReactiveUserDetailsService(user);
 }
-
 }

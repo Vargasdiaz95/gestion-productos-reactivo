@@ -14,35 +14,25 @@ import reactor.core.publisher.Mono;
 @Service
 @RequiredArgsConstructor
 public class ProductoService {
-
-    public ProductoService() {
-        this.repository = repository;
-    }
-
-    private final ProductoRepository repository;
-
-    public Flux<Producto> listarproductos() {
-        return repository.findAll();
-    }
-
-    public Mono<Producto> guardar(Producto producto) {
-        return repository.save(producto);
-    }
-
-    public Mono<Producto> buscarPorId(String id) {
-        return repository.findById(id);
-    }
-
-    public Mono<Void> eliminar(String id) {
-        return repository.deleteById(id);
-    }
-
-    public Mono<Producto> actualizar(String id, Producto producto) {
-        return repository.findById(id)
-                .flatMap(p -> {
-                    p.setNombre(producto.getNombre());
-                    p.setPrecio(producto.getPrecio());
-                    return repository.save(p);
-                });
-    }
+private final ProductoRepository productoRepository;
+public Flux<Producto> listarProductos() {
+return productoRepository.findAll();
+}
+public Mono<Producto> obtenerProductoPorId(String id) {
+return productoRepository.findById(id);
+}
+public Mono<Producto> crearProducto(Producto producto) {
+return productoRepository.save(producto);
+}
+public Mono<Producto> actualizarProducto(String id, Producto nuevoProducto) {
+return productoRepository.findById(id)
+.flatMap(productoExistente -> {
+productoExistente.setNombre(nuevoProducto.getNombre());
+productoExistente.setPrecio(nuevoProducto.getPrecio());
+return productoRepository.save(productoExistente);
+});
+}
+public Mono<Void> eliminarProducto(String id) {
+return productoRepository.deleteById(id);
+}
 }
