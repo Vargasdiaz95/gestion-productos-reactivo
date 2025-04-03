@@ -16,7 +16,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor // Lombok: constructor con todos los campos
 @Builder // Lombok: patrón builder
 public class Producto {
-@Id
+
+    public Producto(String string, String producto_1, int par) {
+    }
+    
+    @Id
     private String id;
     private String nombre;
     private double precio;
@@ -44,5 +48,5 @@ public class Producto {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-    
+
 }
