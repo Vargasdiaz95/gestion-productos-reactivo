@@ -81,7 +81,7 @@ class ProductoServiceTests {
         verify(productoRepository, times(1)).findById("1");
     }
     */
-    /**
+    
     //Prueba Unitaria Obtener Producto Por Id
     @Mock
     private ProductoRepository productoRepository;
@@ -105,5 +105,5 @@ class ProductoServiceTests {
         assertEquals(producto1, producto.block());
         verify(productoRepository, times(1)).save(producto1);
     }
-    */
+    
 }
