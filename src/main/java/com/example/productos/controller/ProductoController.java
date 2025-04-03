@@ -11,17 +11,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
 import java.util.Locale;
-
 @RestController
 @RequestMapping("/api/productos")
-@RequiredArgsConstructor // Lombok: genera un constructor con los campos final
-public class ProductoController {
+@RequiredArgsConstructor
 
-    private final ProductoService productoService = null;
-    
-    private final MessageSource messageSource = null;
+public class ProductoController {
+    private final ProductoService productoService;
+    private final MessageSource messageSource;
+    //private final MessageSource messageSource;
 
     @GetMapping
     public Flux<Producto> listarproductos() {
